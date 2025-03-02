@@ -221,7 +221,7 @@ When executed, the simulation logs will display the processing sequence and gene
 Before running the test, update the following line in `analyzer_tester.hpp` to match your system's file path:
 
 ```cpp
-std::string analyzer_test = "/home/sajaf/devs-image-processing-system/test_files/analyzer/" + test + "/analyzer_test.txt"
+std::string analyzer_test = "/absolute/path/to/devs-image-processing-system/test_files/analyzer/" + test + "/analyzer_test.txt"
 ```
 
 #### **Running Different Tests**  
