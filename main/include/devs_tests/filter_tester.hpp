@@ -13,15 +13,15 @@ struct filter_tester: public Coupled {
     filter_tester(const std::string& id) : Coupled(id) {
         auto filter_model = addComponent<filter>("filter model");
 
-        std::string test = "test1"
+        std::string test = "test1";
         std::string filter_input_test = "/absolute/path/to/devs-image-processing-system/test_files/filter/" + test + "/filter_input_test.txt";
         std::string filter_done_signal_test = "/absolute/path/to/devs-image-processing-system/test_files/filter/" + test + "/filter_done_signal_test.txt";
 
         auto filter_input_file = addComponent<lib::IEStream<std::string>>(
-            "filter input file", filter_input_test
+            "filter input file", filter_input_test.c_str()
         );
         auto filter_done_signal_file = addComponent<lib::IEStream<bool>>(
-            "filter done signal file", filter_done_signal_test
+            "filter done signal file", filter_done_signal_test.c_str()
         );
 
         // Internal Couplings

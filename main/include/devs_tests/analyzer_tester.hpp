@@ -13,11 +13,11 @@ struct analyzer_tester: public Coupled {
     analyzer_tester(const std::string& id) : Coupled(id) {
         auto analyzer_model = addComponent<analyzer>("analyzer model");
         
-        std::string test = "test1"
-        std::string analyzer_test = "/absolute/path/to/devs-image-processing-system/test_files/analyzer/" + test + "/analyzer_test.txt"
+        std::string test = "test1";
+        std::string analyzer_test = "/absolute/path/to/devs-image-processing-system/test_files/analyzer/" + test + "/analyzer_test.txt";
 
         auto analyzer_file = addComponent<lib::IEStream<std::string>>(
-            "analyzer file", analyzer_test
+            "analyzer file", analyzer_test.c_str()
         );
 
         // Internal Couplings
