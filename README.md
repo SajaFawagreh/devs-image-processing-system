@@ -7,6 +7,62 @@ The **Loader** initializes with a list of images, converts them to `.png`, and s
 
 The system is structured using **atomic** and **coupled DEVS models**, ensuring modular and event-driven execution.
 
+## Repository Structure
+This repository is arranged in the following manner:
+
+```sh
+.
+├── bin/                         # Compiled executables for running the models
+├── build/                       # Build directory (generated after compilation)
+├── main/                        # Main source code directory
+│   ├── include/                 # Header files for models and tests
+│   │   ├── devs_tests/          # Test models for individual components
+│   │   │   ├── analyzer_tester.hpp
+│   │   │   ├── filter_tester.hpp
+│   │   │   ├── filterAnalyzer_tester.hpp
+│   │   │   ├── loader_tester.hpp
+│   │   ├── drivers/             # Additional utility files
+│   │   │   ├── manchester_encoder.c
+│   │   │   ├── manchester_encoder.h
+│   │   ├── analyzer.hpp         # Atomic model: Analyzer
+│   │   ├── filter.hpp           # Atomic model: Filter
+│   │   ├── filterAnalyzer.hpp   # Coupled model: Filter + Analyzer
+│   │   ├── loader.hpp           # Atomic model: Loader
+│   │   ├── top.hpp              # Coupled model: Top-level system
+│   ├── test_runs/               # Main test files for execution
+│   │   ├── main_analyzer_tester.cpp
+│   │   ├── main_filter_tester.cpp
+│   │   ├── main_filterAnalyzer_tester.cpp
+│   │   ├── main_loader_tester.cpp
+|   ├── CMakeLists.txt           # CMake configuration for the project
+|   ├── idf_component.yml        # ESP-IDF component configuration file
+│   ├── main.cpp                 # Main file to simulate the full system
+├── test_files/                  # Input test cases for models
+│   ├── analyzer/
+│   │   ├── test1/
+│   │   │   ├── analyzer_test.txt
+│   │   ├── test2/
+│   │   │   ├── analyzer_test.txt
+│   ├── filter/
+│   │   ├── test1/
+│   │   │   ├── filter_input_test.txt
+│   │   │   ├── filter_done_signal_test.txt
+│   │   ├── test2/
+│   │   │   ├── filter_input_test.txt
+│   │   │   ├── filter_done_signal_test.txt
+│   ├── filterAnalyzer/
+│   │   ├── test1/
+│   │   │   ├── filterAnalyzer_test.txt
+│   │   ├── test2/
+│   │   │   ├── filterAnalyzer_test.txt
+├── .gitignore                    # Git ignore file
+├── build_esp.sh                  # Build script for ESP32
+├── build_sim.sh                  # Build script for Cadmium simulation
+├── CMakeLists.txt                # CMake configuration for building the project
+├── dependencies.lock             # Dependency management file
+└── README.md                     # This documentation file
+```
+
 ## System Components (Atomic Models)
 
 This project consists of three main atomic components: **Loader**, **Filter**, and **Analyzer**. Each component plays a crucial role in the **Image Processing System**, ensuring images are processed sequentially from loading to filtering to analysis.
@@ -107,13 +163,6 @@ The **FilterAnalyzer Tester** is a coupled model that validates the interaction 
 
 This section contains different main files used to execute and test the **Image Processing System**. Each file initializes the system components and runs simulations under various configurations.  
 
-### **Standard Simulation**  
-**File:** [main.cpp](./main.cpp)  
-
-This file initializes and runs the **Image Processing System** using Cadmium. It sets up the **Top Model**, which integrates the **Loader, Filter, and Analyzer**, processes a predefined list of images, and executes the simulation for **25 seconds** to complete the full workflow.  
-
----
-
 ### **Loader Test**  
 **File:** [main_loader_tester.cpp](main/test_runs/main_loader_tester.cpp)  
 
@@ -185,6 +234,39 @@ Modify the following line in `analyzer_tester.hpp` to switch between tests:
 ```cpp
 std::string test = "test1";
 ```
+
+---
+
+### **FilterAnalyzer Test**  
+**File:** [main_filterAnalyzer_tester.cpp](main/test_runs/main_filterAnalyzer_tester.cpp)  
+
+This test runs the **FilterAnalyzer** coupled model to validate the integration of the **Filter** and **Analyzer** components.  
+When executed, the simulation logs will display the filtering and analysis process, including image processing and the generation of reports.
+
+#### **Setup Instructions**  
+Before running the test, update the following line in `filterAnalyzer_tester.hpp` to match your system's file path:
+
+```cpp
+std::string filter_input_test = "/absolute/path/to/devs-image-processing-system/test_files/filterAnalyzer/" + test + "/filterAnalyzer_test.txt";
+```
+
+#### **Running Different Tests**  
+
+- **Sequential Image Processing Pipeline Test (Test 1)** → Set `test = "test1"`  
+- **Simultaneous Image Processing Test (Test 2)** → Set `test = "test2"`  
+
+Modify the following line in `filterAnalyzer_tester.hpp` to switch between tests:  
+
+```cpp
+std::string test = "test1";
+```
+
+---
+
+### **Standard Simulation**  
+**File:** [main.cpp](./main.cpp)  
+
+This file initializes and runs the **Image Processing System** using Cadmium. It sets up the **Top Model**, which integrates the **Loader, Filter, and Analyzer**, processes a predefined list of images, and executes the simulation for **25 seconds** to complete the full workflow.  
 
 ## Dependencies
 This project assumes that you have Cadmium installed in a location accessible by the environment variable $CADMIUM.
