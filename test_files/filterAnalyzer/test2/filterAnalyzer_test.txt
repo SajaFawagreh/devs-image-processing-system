@@ -1,2 +1,2 @@
-5 "image1.jpeg"
-5 "image2.jpeg"
+5 image1.png
+5 image2.png

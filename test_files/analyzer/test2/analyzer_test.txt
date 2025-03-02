@@ -1,2 +1,2 @@
 5 filtered_image1.png
-10 filtered_image2.png
+5 filtered_image2.png
