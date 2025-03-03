@@ -3,7 +3,7 @@
 
 #include "cadmium/modeling/devs/coupled.hpp"
 #include "cadmium/lib/iestream.hpp"
-#include "../top.hpp"
+#include "../top_system.hpp"
 
 using namespace cadmium;
 
