@@ -12,74 +12,75 @@ This repository is arranged in the following manner:
 
 ```sh
 .
-├── bin/                         # Compiled executables for running the models
-├── build/                       # Build directory (generated after compilation)
-├── log_files/                   # Output logs from test executions
-│   ├── analyzer/                # Logs from the Analyzer model
+├── bin/                                          # Compiled executables for running the models
+├── build/                                        # Build directory (generated after compilation)
+├── log_files/                                    # Output logs from test executions
+│   ├── analyzer/                                 # Logs from the Analyzer model
 │   │   ├── test_1_output.csv
 │   │   ├── test_2_output.csv
-│   ├── filter/                  # Logs from the Filter model
+│   ├── filter/                                   # Logs from the Filter model
 │   │   ├── test_1_output.csv
 │   │   ├── test_2_output.csv
-│   ├── filterAnalyzer/          # Logs from the FilterAnalyzer coupled model
+│   ├── filterAnalyzer/                           # Logs from the FilterAnalyzer coupled model
 │   │   ├── test_1_output.csv
 │   │   ├── test_2_output.csv
-│   ├── loader/                  # Logs from the Loader model
+│   ├── loader/                                   # Logs from the Loader model
 │   │   ├── test_1_output.csv
 │   │   ├── test_2_output.csv
-│   ├── top_system/              # Logs from the top system
+│   ├── top_system/                               # Logs from the top system
 │   │   ├── test_1_output.csv
 │   │   ├── test_2_output.csv
-├── main/                        # Main source code directory
-│   ├── include/                 # Header files for models and tests
-│   │   ├── devs_tests/          # Test models for individual components
+├── main/                                         # Main source code directory
+│   ├── include/                                  # Header files for models and tests
+│   │   ├── devs_tests/                           # Test models for individual components
 │   │   │   ├── analyzer_tester.hpp
 │   │   │   ├── filter_tester.hpp
 │   │   │   ├── filterAnalyzer_tester.hpp
 │   │   │   ├── loader_tester.hpp
 │   │   │   ├── top_system_tester.hpp
-│   │   ├── drivers/             # Additional utility files
+│   │   ├── drivers/                              # Additional utility files
 │   │   │   ├── manchester_encoder.c
 │   │   │   ├── manchester_encoder.h
-│   │   ├── analyzer.hpp         # Atomic model: Analyzer
-│   │   ├── filter.hpp           # Atomic model: Filter
-│   │   ├── filterAnalyzer.hpp   # Coupled model: Filter + Analyzer
-│   │   ├── loader.hpp           # Atomic model: Loader
-│   │   ├── top_system.hpp       # Coupled model: Top-level system
-│   ├── test_runs/               # Main test files for execution
+│   │   ├── analyzer.hpp                          # Atomic model: Analyzer
+│   │   ├── filter.hpp                            # Atomic model: Filter
+│   │   ├── filterAnalyzer.hpp                    # Coupled model: Filter + Analyzer
+│   │   ├── loader.hpp                            # Atomic model: Loader
+│   │   ├── top_system.hpp                        # Coupled model: Top-level system
+│   ├── test_runs/                                # Main test files for execution
 │   │   ├── main_analyzer_tester.cpp
 │   │   ├── main_filter_tester.cpp
 │   │   ├── main_filterAnalyzer_tester.cpp
 │   │   ├── main_loader_tester.cpp
 │   │   ├── main_top_system_tester.cpp
-│   ├── CMakeLists.txt           # CMake configuration for the project
-│   ├── idf_component.yml        # ESP-IDF component configuration file
-│   ├── main.cpp                 # Main file to simulate the full system
-├── test_files/                  # Input test cases for models
-│   ├── analyzer/                # Test cases for the Analyzer model
+│   ├── CMakeLists.txt                            # CMake configuration for the project
+│   ├── idf_component.yml                         # ESP-IDF component configuration file
+│   ├── main.cpp                                  # Main file to simulate the full system
+├── test_files/                                   # Input test cases for models
+│   ├── analyzer/                                 # Test cases for the Analyzer model
 │   │   ├── test1/
 │   │   │   ├── analyzer_test.txt
 │   │   ├── test2/
 │   │   │   ├── analyzer_test.txt
-│   ├── filter/                  # Test cases for the Filter model
+│   ├── filter/                                   # Test cases for the Filter model
 │   │   ├── test1/
 │   │   │   ├── filter_input_test.txt
 │   │   │   ├── filter_done_signal_test.txt
 │   │   ├── test2/
 │   │   │   ├── filter_input_test.txt
 │   │   │   ├── filter_done_signal_test.txt
-│   ├── filterAnalyzer/          # Test cases for the FilterAnalyzer coupled model
+│   ├── filterAnalyzer/                           # Test cases for the FilterAnalyzer coupled model
 │   │   ├── test1/
 │   │   │   ├── filterAnalyzer_test.txt
 │   │   ├── test2/
 │   │   │   ├── filterAnalyzer_test.txt
-├── .gitignore                    # Git ignore file
-├── build_esp.sh                  # Build script for ESP32
-├── build_sim.sh                  # Build script for Cadmium simulation
-├── CMakeLists.txt                # CMake configuration for building the project
-├── dependencies.lock             # Dependency management file
-├── cadmium_manual_models.png     # Diagrams of the models in this repo
-└── README.md                     # This documentation file
+├── .gitignore                                    # Git ignore file
+├── build_esp.sh                                  # Build script for ESP32
+├── build_sim.sh                                  # Build script for Cadmium simulation
+├── CMakeLists.txt                                # CMake configuration for building the project
+├── dependencies.lock                             # Dependency management file
+├── Image_Processing_System_Final_Report.pdf      # Final report document
+├── Image-Processing-System_models.png            # Diagrams of the models in this repo
+└── README.md                                     # This documentation file
 ```
 
 ## System Components (Atomic Models)
