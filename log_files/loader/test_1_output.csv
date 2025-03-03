@@ -1,0 +1,8 @@
+sep=;
+time;model_id;model_name;port_name;data
+0;1;loader model;;State = 1
+5;1;loader model;image_out;image1.png
+5;1;loader model;;State = 1
+10;1;loader model;image_out;image2.png
+10;1;loader model;;State = 0
+10;1;loader model;;State = 0

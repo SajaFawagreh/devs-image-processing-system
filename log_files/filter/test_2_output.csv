@@ -1,0 +1,14 @@
+sep=;
+time;model_id;model_name;port_name;data
+0;1;filter done signal file;;inf
+0;2;filter input file;;5
+0;3;filter model;;State = 0
+5;2;filter input file;out;image1.png
+5;2;filter input file;;5
+5;3;filter model;;State = 0
+10;2;filter input file;out;image2.png
+10;2;filter input file;;inf
+10;3;filter model;;State = 0
+10;1;filter done signal file;;inf
+10;2;filter input file;;inf
+10;3;filter model;;State = 0

@@ -2,7 +2,11 @@
 *.csv
 
 # Except those inside log_files/
-!log_files/*.csv
+!log_files/analyzer/*.csv
+!log_files/filter/*.csv
+!log_files/filterAnalyzer/*.csv
+!log_files/loader/*.csv
+!log_files/top_system/*.csv
 
 components/
 build/

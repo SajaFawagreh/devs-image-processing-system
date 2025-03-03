@@ -1,0 +1,8 @@
+sep=;
+time;model_id;model_name;port_name;data
+0;3;analyzer;;State = 0
+0;4;filter;;State = 0
+0;5;loader;;State = 0
+0;3;analyzer;;State = 0
+0;4;filter;;State = 0
+0;5;loader;;State = 0

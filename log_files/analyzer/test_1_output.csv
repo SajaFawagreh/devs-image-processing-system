@@ -1,0 +1,18 @@
+sep=;
+time;model_id;model_name;port_name;data
+0;1;analyzer file;;5
+0;2;analyzer model;;State = 0
+5;1;analyzer file;out;filtered_image1.png
+5;1;analyzer file;;5
+5;2;analyzer model;;State = 1
+5.1;2;analyzer model;analysis_report_out;image1_analysis_report.txt
+5.1;2;analyzer model;done;1
+5.1;2;analyzer model;;State = 0
+10;1;analyzer file;out;filtered_image2.png
+10;1;analyzer file;;inf
+10;2;analyzer model;;State = 1
+10.1;2;analyzer model;analysis_report_out;image2_analysis_report.txt
+10.1;2;analyzer model;done;1
+10.1;2;analyzer model;;State = 0
+10.1;1;analyzer file;;inf
+10.1;2;analyzer model;;State = 0
