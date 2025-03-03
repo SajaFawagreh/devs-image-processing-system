@@ -369,6 +369,13 @@ To test the **FilterAnalyzer** coupled model, run:
 ```
 This will execute the **FilterAnalyzer** system, combining Filter and Analyzer, and log the full filtering and analysis process.
 
+### **Top System Test**  
+To test the **Top System** coupled model, run:  
+```sh
+./bin/Top_System_Tester
+```
+This will execute the **Top System**, which integrates the Loader and FilterAnalyzer, and log the full image processing workflow, from loading images to filtering and analysis.
+
 ### **Full System Execution**  
 To test the entire **Image Processing System**, run:  
 ```sh
