@@ -1,7 +1,7 @@
 #include "cadmium/simulation/rt_root_coordinator.hpp"
 #include "cadmium/simulation/root_coordinator.hpp"
 #include <limits>
-#include "include/top.hpp"
+#include "include/top_system.hpp"
 
 #ifdef RT_ESP32
 	#include <cadmium/simulation/rt_clock/ESPclock.hpp>

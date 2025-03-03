@@ -45,7 +45,7 @@ This repository is arranged in the following manner:
 │   │   ├── filter.hpp           # Atomic model: Filter
 │   │   ├── filterAnalyzer.hpp   # Coupled model: Filter + Analyzer
 │   │   ├── loader.hpp           # Atomic model: Loader
-│   │   ├── top.hpp              # Coupled model: Top-level system
+│   │   ├── top_system.hpp       # Coupled model: Top-level system
 │   ├── test_runs/               # Main test files for execution
 │   │   ├── main_analyzer_tester.cpp
 │   │   ├── main_filter_tester.cpp
@@ -116,10 +116,10 @@ The **FilterAnalyzer** system combines the **Filter** and **Analyzer** models. I
 
 ---
 
-### **2. Top Model**  
-**File:** [top.hpp](main/include/filterAnalyzer.hpptop.hpp)  
+### **2. Top System**  
+**File:** [top_system.hpp](main/include/top_system.hpp)  
 
-The **Top Model** is the highest-level coupled model, integrating the **Loader** and **FilterAnalyzer** to manage the full image processing pipeline.
+The **Top System** is the highest-level coupled model, integrating the **Loader** and **FilterAnalyzer** to manage the full image processing pipeline.
 
 ## Test Models
 
