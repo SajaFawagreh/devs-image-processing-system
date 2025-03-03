@@ -153,7 +153,7 @@ The **Filter Tester** is a coupled model designed to validate the behavior of th
 ---
 
 ### **Analyzer Tester**
-**File:** [analyzer_tester.hpp](./devs_tests/analyzer_tester.hpp)
+**File:** [analyzer_tester.hpp](main/include/devs_tests/analyzer_tester.hpp)
 
 #### **Description**  
 The **Analyzer Tester** is a coupled model designed to validate the behavior of the **Analyzer** atomic model. It simulates receiving filtered images from the **Filter** and generating analysis reports.
@@ -319,7 +319,7 @@ std::vector<std::string> image_list = {"image1.jpeg", "image2.jpeg"};
 ---
 
 ### **Standard Simulation**  
-**File:** [main.cpp](./main.cpp)  
+**File:** [main.cpp](main/main.cpp)  
 
 This file initializes and runs the **Image Processing System** using Cadmium. It sets up the **Top Model**, which integrates the **Loader, Filter, and Analyzer**, processes a predefined list of images, and executes the simulation for **25 seconds** to complete the full workflow.  
 
@@ -386,6 +386,5 @@ By default, the simulation outputs logs to the terminal. If you prefer to log re
 2. **Enable CSV logging** by uncommenting the line below and specifying the appropriate log file path:
    ```cpp
    rootCoordinator.setLogger<CSVLogger>("log_files/loader/test_1_output.csv", ";");
-
    ```
 This allows you to capture simulation results in structured CSV files instead of printing them directly to the terminal.
