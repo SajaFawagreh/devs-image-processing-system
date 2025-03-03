@@ -12,7 +12,7 @@ int main() {
 	auto rootCoordinator = RootCoordinator(model);
 
 	rootCoordinator.setLogger<STDOUTLogger>(";");
-	// rootCoordinator.setLogger<CSVLogger>("log_files/filterAnalyzer/test_2_output.csv", ";");
+	// rootCoordinator.setLogger<CSVLogger>("log_files/filterAnalyzer/test_1_output.csv", ";");
 
 	rootCoordinator.start();
 	rootCoordinator.simulate(20.0);
