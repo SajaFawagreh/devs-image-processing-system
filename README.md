@@ -34,8 +34,8 @@ This repository is arranged in the following manner:
 │   │   ├── main_filter_tester.cpp
 │   │   ├── main_filterAnalyzer_tester.cpp
 │   │   ├── main_loader_tester.cpp
-|   ├── CMakeLists.txt           # CMake configuration for the project
-|   ├── idf_component.yml        # ESP-IDF component configuration file
+│   ├── CMakeLists.txt           # CMake configuration for the project
+│   ├── idf_component.yml        # ESP-IDF component configuration file
 │   ├── main.cpp                 # Main file to simulate the full system
 ├── test_files/                  # Input test cases for models
 │   ├── analyzer/
@@ -60,6 +60,7 @@ This repository is arranged in the following manner:
 ├── build_sim.sh                  # Build script for Cadmium simulation
 ├── CMakeLists.txt                # CMake configuration for building the project
 ├── dependencies.lock             # Dependency management file
+├── cadmium_manual_models.png     # Diagrams of the models in this repo
 └── README.md                     # This documentation file
 ```
 
