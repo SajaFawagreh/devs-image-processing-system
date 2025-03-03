@@ -1,7 +1,12 @@
+# Ignore all CSV files
+*.csv
+
+# Except those inside log_files/
+!log_files/*.csv
+
 components/
 build/
 debug/
 sdkconfig.*
 managed_components
 bin
-*.csv

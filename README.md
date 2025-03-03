@@ -14,6 +14,22 @@ This repository is arranged in the following manner:
 .
 ├── bin/                         # Compiled executables for running the models
 ├── build/                       # Build directory (generated after compilation)
+├── log_files/                   # Output logs from test executions
+│   ├── analyzer/                # Logs from the Analyzer model
+│   │   ├── test_1_output.csv
+│   │   ├── test_2_output.csv
+│   ├── filter/                  # Logs from the Filter model
+│   │   ├── test_1_output.csv
+│   │   ├── test_2_output.csv
+│   ├── filterAnalyzer/          # Logs from the FilterAnalyzer coupled model
+│   │   ├── test_1_output.csv
+│   │   ├── test_2_output.csv
+│   ├── loader/                  # Logs from the Loader model
+│   │   ├── test_1_output.csv
+│   │   ├── test_2_output.csv
+│   ├── top_system/              # Logs from the top system
+│   │   ├── test_1_output.csv
+│   │   ├── test_2_output.csv
 ├── main/                        # Main source code directory
 │   ├── include/                 # Header files for models and tests
 │   │   ├── devs_tests/          # Test models for individual components
@@ -21,6 +37,7 @@ This repository is arranged in the following manner:
 │   │   │   ├── filter_tester.hpp
 │   │   │   ├── filterAnalyzer_tester.hpp
 │   │   │   ├── loader_tester.hpp
+│   │   │   ├── top_system_tester.hpp
 │   │   ├── drivers/             # Additional utility files
 │   │   │   ├── manchester_encoder.c
 │   │   │   ├── manchester_encoder.h
@@ -34,23 +51,24 @@ This repository is arranged in the following manner:
 │   │   ├── main_filter_tester.cpp
 │   │   ├── main_filterAnalyzer_tester.cpp
 │   │   ├── main_loader_tester.cpp
+│   │   ├── main_top_system_tester.cpp
 │   ├── CMakeLists.txt           # CMake configuration for the project
 │   ├── idf_component.yml        # ESP-IDF component configuration file
 │   ├── main.cpp                 # Main file to simulate the full system
 ├── test_files/                  # Input test cases for models
-│   ├── analyzer/
+│   ├── analyzer/                # Test cases for the Analyzer model
 │   │   ├── test1/
 │   │   │   ├── analyzer_test.txt
 │   │   ├── test2/
 │   │   │   ├── analyzer_test.txt
-│   ├── filter/
+│   ├── filter/                  # Test cases for the Filter model
 │   │   ├── test1/
 │   │   │   ├── filter_input_test.txt
 │   │   │   ├── filter_done_signal_test.txt
 │   │   ├── test2/
 │   │   │   ├── filter_input_test.txt
 │   │   │   ├── filter_done_signal_test.txt
-│   ├── filterAnalyzer/
+│   ├── filterAnalyzer/          # Test cases for the FilterAnalyzer coupled model
 │   │   ├── test1/
 │   │   │   ├── filterAnalyzer_test.txt
 │   │   ├── test2/
@@ -157,8 +175,23 @@ The **FilterAnalyzer Tester** is a coupled model that validates the interaction 
 #### **Functionality**  
 - Uses an input file to provide test images at specific times.
 - Sends images to the **Filter**, which processes and forwards them to the **Analyzer**.
-- The **Analyzer** generates reports and sends "done" signals to allow the **Filter** to process the next image.
+- The **Analyzer** performs analysis, generates reports and sends "done" signals to allow the **Filter** to process the next image.
 - Simulates the full pipeline from filtering to analysis.
+
+---
+
+### **Top System Tester**
+**File:** [top_system_tester.hpp](main/include/devs_tests/top_system_tester.hpp)
+
+#### **Description**  
+The **Top System Tester** is a coupled model that validates the **full image processing pipeline** by integrating the **Loader** and **FilterAnalyzer** models. It ensures that images are correctly generated, processed, and analyzed, simulating the complete system behavior.  
+
+#### **Functionality**  
+- Initializes the **Loader** with a predefined list of images.
+- Sends images to the **FilterAnalyzer** coupled model, which consists of:
+  - The **Filter**, which processes and forwards them to the **Analyzer**.
+  - The **Analyzer**, which performs analysis, generates reports and sends "done" signals to allow the **Filter** to process the next image.  
+- Simulates the full execution flow from image generation to analysis, validating system correctness and expected outputs.
 
 ## **Main Simulation Files**  
 
@@ -171,9 +204,9 @@ This test runs the **Loader** component to verify its behavior when processing i
 
 #### **Running Different Tests**
 
-- Basic Image Loading Test (Test 1) → Set image_list = {"image1.jpeg", "image2.jpeg"}
+- **Basic Image Loading Test (Test 1)** → Set `image_list = {"image1.jpeg", "image2.jpeg"}`
 
-- Empty List Test (Test 2) → Set image_list = {}
+- **Empty List Test (Test 2)** → Set `image_list = {}`
 
 Modify the following line in `main_loader_tester.cpp` to switch between tests::  
 
@@ -200,9 +233,9 @@ std::string filter_done_signal_test = "/absolute/path/to/devs-image-processing-s
 
 #### **Running Different Tests**
 
-- Basic Image Filtering Test (Test 1) → Set test = "test1"
+- **Basic Image Filtering Test (Test 1)** → Set `test = "test1"`
 
-- No "Done" Signal Test (Test 2) → Set test = "test2"
+- **No "Done" Signal Test (Test 2)** → Set `test = "test2"`
 
 Modify the following line in `filter_tester.hpp` to switch between tests::  
 
@@ -227,7 +260,8 @@ std::string analyzer_test = "/absolute/path/to/devs-image-processing-system/test
 
 #### **Running Different Tests**  
 
-- **Standard Image Analysis Test (Test 1)** → Set `test = "test1"`  
+- **Standard Image Analysis Test (Test 1)** → Set `test = "test1"`
+
 - **Simultaneous Image Input Test (Test 2)** → Set `test = "test2"`  
 
 Modify the following line in `analyzer_tester.hpp` to switch between tests:  
@@ -253,13 +287,33 @@ std::string filter_input_test = "/absolute/path/to/devs-image-processing-system/
 
 #### **Running Different Tests**  
 
-- **Sequential Image Processing Pipeline Test (Test 1)** → Set `test = "test1"`  
+- **Sequential Image Processing Pipeline Test (Test 1)** → Set `test = "test1"`
+
 - **Simultaneous Image Processing Test (Test 2)** → Set `test = "test2"`  
 
 Modify the following line in `filterAnalyzer_tester.hpp` to switch between tests:  
 
 ```cpp
 std::string test = "test1";
+```
+
+---
+
+### **Top System Test**  
+**File:** [main_top_system_tester.cpp](main/test_runs/main_top_system_tester.cpp)  
+
+This test runs the **Top System** coupled model, which integrates the **Loader** and **FilterAnalyzer** components. It verifies the full pipeline from image generation to filtering and analysis. The simulation logs will display the **entire image processing sequence** in the terminal.  
+
+#### **Running Different Tests**
+
+- **Standard Processing Test (Test 1)** → Set `image_list = {"image1.jpeg", "image2.jpeg"}`
+
+- **No Images Test (Test 2)** → Set `image_list = {}`
+
+Modify the following line in `main_top_system_tester.cpp` to switch between tests::  
+
+```cpp
+std::vector<std::string> image_list = {"image1.jpeg", "image2.jpeg"};
 ```
 
 ---
