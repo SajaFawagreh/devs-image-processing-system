@@ -374,3 +374,18 @@ To test the entire **Image Processing System**, run:
 ./bin/Image_Processing_System
 ```
 This will simulate the complete image processing workflow, from loading images to generating analysis reports.
+
+## **Logging Configuration**  
+By default, the simulation outputs logs to the terminal. If you prefer to log results into a **CSV file instead**, follow these steps:  
+
+1. **Disable terminal output** by commenting out the following line in your main test files (`main_loader_tester.cpp`, `main_filter_tester.cpp`, etc.):  
+   ```cpp
+   // rootCoordinator.setLogger<STDOUTLogger>(";");
+   ```
+
+2. **Enable CSV logging** by uncommenting the line below and specifying the appropriate log file path:
+   ```cpp
+   rootCoordinator.setLogger<CSVLogger>("log_files/loader/test_1_output.csv", ";");
+
+   ```
+This allows you to capture simulation results in structured CSV files instead of printing them directly to the terminal.
